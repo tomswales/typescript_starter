@@ -50,6 +50,10 @@ button {
 	border: 1px solid black;
 }
 
+button:hover {
+	cursor: pointer;
+}
+
 .message-item-container {
 	width: 100%;
 	display: flex;

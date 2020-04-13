@@ -1,7 +1,7 @@
-import React, {FC as FunctionalComponent} from 'react';
+import React, {FC} from 'react';
 import {Messages, Message} from '/imports/api/messages';
 
-const MessageItem: FunctionalComponent<Message> = ({message}) => {
+const MessageItem: FC<Message> = ({message}) => {
 
   return <div className="message-item-container">
             <div className="message-from">

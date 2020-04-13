@@ -1,40 +1,40 @@
 import { Meteor } from 'meteor/meteor';
-import React, {FC as FunctionalComponent} from 'react';
+import React, {FC, ReactNode} from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import App from '/imports/ui/App';
 import LoginPage from '/imports/ui/LoginPage';
 
 // Top-level routing component
-const Routes: FunctionalComponent<RouteProps> = ({loggedIn, userId}) => {
+const Routes: FC<RouteProps> = ({loggedIn, userId}) => {
 	return <Router>
 		<Switch>
 			<Route 
 				exact 
 				path="/" 
 				render={
-					(): FunctionalComponent => redirectIfLoggedOut(<App path="/" userId={userId}/>)
+					(): ReactNode => redirectIfLoggedOut(<App path="/" userId={userId}/>)
 				}
 			/>
 			<Route 
 				exact 
 				path="/login" 
 				render={
-					(): FunctionalComponent => redirectIfLoggedIn(<LoginPage/>)
+					(): ReactNode => redirectIfLoggedIn(<LoginPage/>)
 				}
 			/>
 			<Route 
 				exact 
 				path="/:path" 
 				render={
-					({match}): FunctionalComponent => redirectIfLoggedOut(<App path={"/" + match.params.path} userId={userId}/>)
+					({match}): ReactNode => redirectIfLoggedOut(<App path={"/" + match.params.path} userId={userId}/>)
 				}
 			/>
 		</Switch>
 	</Router>
 
 	// Called before rendering logged in component to check if user is currently logged in
-	function redirectIfLoggedOut (component: FunctionalComponent): FunctionalComponent {
+	function redirectIfLoggedOut (component: FC): ReactNode {
 		if(loggedIn) {
 			return component;
 		}
@@ -44,7 +44,7 @@ const Routes: FunctionalComponent<RouteProps> = ({loggedIn, userId}) => {
 	}
 
 	// Called before rendering login page to check if user is currently logged in
-	function redirectIfLoggedIn (component: FunctionalComponent): FunctionalComponent {
+	function redirectIfLoggedIn (component: FC): ReactNode {
 		if(loggedIn) {
 			return <Redirect to="/"/>;
 		}

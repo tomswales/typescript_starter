@@ -1,7 +1,7 @@
-import React, {FC as FunctionalComponent, useState, useEffect} from 'react';
+import React, {FC, useState, useEffect} from 'react';
 import { Meteor } from 'meteor/meteor';
 
-const LoginPage: FunctionalComponent = () => {
+const LoginPage: FC = () => {
 
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
